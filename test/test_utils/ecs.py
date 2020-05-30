@@ -4,7 +4,6 @@ Helper functions for ECS Integration Tests
 import datetime
 import os
 
-
 import boto3
 
 from retrying import retry
