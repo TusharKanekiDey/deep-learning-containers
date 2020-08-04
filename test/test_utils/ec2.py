@@ -26,7 +26,7 @@ def get_ec2_instance_type(default, processor, disable_p3dn=False):
     a list.
     """
     allowed_processors = ("cpu", "gpu", "eia")
-    p3dn = "p3dn.24xlarge"
+    p3dn = "p3.8xlarge"
     if processor not in allowed_processors:
         raise RuntimeError(
             f"Aborting EC2 test run. Unrecognized processor type {processor}. "
@@ -39,6 +39,9 @@ def get_ec2_instance_type(default, processor, disable_p3dn=False):
     instance_type = os.getenv(f"EC2_{processor.upper()}_INSTANCE_TYPE", default)
     #Not running eia test on p3dn instances
     if instance_type == p3dn and (disable_p3dn or processor == "eia"):
+        print(processor)
+        print(instance_type)
+        print(default)
         instance_type = default
     return [instance_type]
 
